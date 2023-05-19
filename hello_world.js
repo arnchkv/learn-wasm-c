@@ -1406,6 +1406,19 @@ function dbg(text) {
       ret = onDone(ret);
       return ret;
     }
+
+  
+  
+    /**
+     * @param {string=} returnType
+     * @param {Array=} argTypes
+     * @param {Object=} opts
+     */
+  function cwrap(ident, returnType, argTypes, opts) {
+      return function() {
+        return ccall(ident, returnType, argTypes, arguments, opts);
+      }
+    }
 function checkIncomingModuleAPI() {
   ignoredModuleProp('fetchSettings');
 }
@@ -1465,6 +1478,7 @@ var dynCall_jiji = Module["dynCall_jiji"] = createExportWrapper("dynCall_jiji");
 // === Auto-generated postamble setup entry stuff ===
 
 Module["ccall"] = ccall;
+Module["cwrap"] = cwrap;
 var missingLibrarySymbols = [
   'zeroMemory',
   'getHeapMax',
@@ -1522,7 +1536,6 @@ var missingLibrarySymbols = [
   'convertI32PairToI53',
   'convertI32PairToI53Checked',
   'convertU32PairToI53',
-  'cwrap',
   'uleb128Encode',
   'sigToWasmTypes',
   'generateFuncType',
