@@ -24,6 +24,14 @@
         [a, b]
       );
 
+      var subNums = Module.cwrap(
+        "subtractNums",
+        "number",
+        "number",
+        ["number", "number"],
+        [a, b]
+      );
+
       var result = Module.ccall(
         "main",
         "number",
@@ -42,6 +50,9 @@
 
       var result = addNums(a, b);
       console.log("cwrap - " + result);
+
+      var sub_res = subNums(a, b);
+      console.log("cwrap sub - " + sub_res);
     }
   </script>
   <input type="number" name="a" id="a">
